@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://FominNV.github.io/carsharing",
-  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.1.9",
     "@redux-devtools/extension": "^3.2.2",
