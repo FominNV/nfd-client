@@ -1,0 +1,29 @@
+@import "styles/sass/main";
+
+.SliderBtn {
+  @include btn-reset;
+  position: absolute;
+  top: 0;
+  width: 64px;
+  height: 100%;
+  @include flex(center, center);
+  color: $gray-light;
+  background: rgba(14, 194, 97, 0);
+  transition: all 0.3s;
+
+  &:hover {
+    background: rgba(14, 194, 97, 0.2);
+  }
+
+  &_prev {
+    left: 0;
+  }
+
+  &_next {
+    right: 0;
+  }
+
+  @media (max-device-width: $xl), (max-width: $xl) {
+    width: 32px;
+  }
+}

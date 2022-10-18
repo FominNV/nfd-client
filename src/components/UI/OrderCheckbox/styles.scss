@@ -1,0 +1,72 @@
+@import "styles/sass/main";
+
+.OrderCheckbox {
+  width: fit-content;
+  height: 16px;
+  margin-right: 16px;
+  margin-bottom: 8px;
+  @include flex(_, center);
+  font: 300 14px/16px $roboto-light;
+  color: $gray;
+  cursor: pointer;
+
+  @media (max-device-width: $x), (max-width: $x) {
+    width: calc(25% - 16px);
+  }
+
+  @media (max-device-width: $lg), (max-width: $lg) {
+    width: calc(33.33% - 16px);
+  }
+
+  @media (max-device-width: $l), (max-width: $l) {
+    width: calc(50% - 16px);
+  }
+
+  @media (max-device-width: $md), (max-width: $md) {
+    width: calc(33.33% - 16px);
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  @media (max-device-width: $sm), (max-width: $sm) {
+    width: calc(50% - 16px);
+  }
+
+  &__checkbox {
+    display: none;
+
+    &:checked {
+      & ~ .OrderCheckbox__custom {
+        border: 1px solid $green;
+      }
+
+      & ~ .OrderCheckbox__text {
+        color: $black;
+      }
+    }
+  }
+
+  &__custom {
+    position: relative;
+    width: 12px;
+    min-width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border: 1px solid $gray;
+  }
+
+  &__check {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+
+    &_active {
+      opacity: 1;
+    }
+  }
+
+  &__text {
+    white-space: nowrap;
+  }
+}

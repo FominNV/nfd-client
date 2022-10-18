@@ -1,0 +1,32 @@
+@import "styles/sass/main";
+
+.ErrorPage {
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  @include flex(center, center);
+  background: $gray-light;
+
+  &__content {
+    @include flex(center, center, column);
+  }
+
+  &__error {
+    margin-top: 16px;
+    font: 400 22px/26px $roboto-regular;
+    color: $gray;
+  }
+
+  &__message {
+    margin-top: 8px;
+    font: 400 18px/22px $roboto-regular;
+    color: $black;
+  }
+
+  &__btn {
+    @include btn-reset;
+    margin-top: 32px;
+    font: 300 14px/17px $roboto-light;
+    color: $green;
+  }
+}

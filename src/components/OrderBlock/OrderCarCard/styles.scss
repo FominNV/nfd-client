@@ -1,0 +1,65 @@
+@import "styles/sass/main";
+
+.OrderCarCard {
+  @include btn-reset;
+  width: 50%;
+  height: 224px;
+  padding: 16px;
+  @include flex(space-between, _, column);
+  border: 1px solid $gray-light;
+
+  &:hover {
+    border-color: $gray;
+  }
+
+  @media (max-device-width: $l), (max-width: $l) {
+    width: 100%;
+    padding: 8px;
+  }
+
+  @media (max-device-width: $md), (max-width: $md) {
+    width: 50%;
+  }
+
+  @media (max-device-width: $sm), (max-width: $sm) {
+    width: 100%;
+  }
+
+  &_active {
+    border-color: $green;
+
+    &:hover {
+      border-color: $green;
+    }
+  }
+
+  &__text-wrap {
+    width: 100%;
+    background: $white;
+    z-index: 2;
+    text-align: left;
+  }
+
+  &__name {
+    font: 400 18px/21px $roboto-regular;
+    color: $black;
+    text-transform: uppercase;
+  }
+
+  &__price {
+    font: 400 14px/16px $roboto-regular;
+    color: $gray;
+  }
+
+  &__img-wrap {
+    width: 100%;
+    @include flex(flex-end);
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    max-width: 236px;
+    border-radius: 15px;
+  }
+}

@@ -1,0 +1,24 @@
+@import "styles/sass/main";
+
+.SliderDot {
+  position: absolute;
+  left: calc(50% - 28px);
+  bottom: 37px;
+  width: 56px;
+  height: 8px;
+  @include flex(space-between);
+  z-index: 5;
+
+  &__dot {
+    @include btn-reset;
+    width: 8px;
+    height: 8px;
+    background: $white;
+    border-radius: 50%;
+    z-index: 5;
+
+    &_active {
+      background: $green;
+    }
+  }
+}

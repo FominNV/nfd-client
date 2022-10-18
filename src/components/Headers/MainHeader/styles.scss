@@ -1,0 +1,45 @@
+@import "styles/sass/main";
+
+.MainHeader {
+  width: 100%;
+  height: 64px;
+  @include flex(center);
+
+  @media (max-device-width: $md), (max-width: $md) {
+    height: 92px;
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
+    padding-top: 32px;
+    @include flex(space-between);
+
+    @media (max-device-width: $md), (max-width: $md) {
+      @include flex(_, flex-end, column);
+    }
+  }
+
+  &__logo {
+    height: 32px;
+    @include flex(_, center);
+    font: 700 30px $roboto-bold;
+    color: $green;
+    text-decoration: none;
+
+    &:hover {
+      animation: jello-horizontal 0.5s 1 normal;
+    }
+  }
+
+  &__city {
+    height: 32px;
+    @include flex(_, center);
+    font: 400 14px $roboto-regular;
+    color: $gray;
+
+    &_name {
+      margin-left: 7.5px;
+    }
+  }
+}

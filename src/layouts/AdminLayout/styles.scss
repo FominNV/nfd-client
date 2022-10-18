@@ -1,0 +1,8 @@
+@import 'styles/sass/main';
+@include scroll-bar-min;
+
+.AdminLayout {
+  @include flex;
+  width: 100%;
+  min-height: 100vh;
+}

@@ -1,0 +1,114 @@
+@import 'styles/sass/main';
+
+.Statusbar {
+  flex: 1 1 335px;
+  background: $white;
+  box-shadow: 0px 2px 4px rgba(90, 97, 105, 0.12);
+  border-radius: 9px;
+
+  @media (max-width: 630px), (max-device-width: 630px) {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  &__info {
+    @include flex(_, center, column);
+    width: 100%;
+    padding: 34px 0 22px;
+  }
+
+  &__img-wrap {
+    @include flex(center, center);
+    width: 244px;
+    height: 110px;
+    overflow: hidden;
+    border: 1px solid transparent;
+
+    &_error {
+      border-color: $red;
+
+    }
+  }
+
+  &__img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  &__img-text {
+    font: 400 20px/24px $helvetica-regular;
+    color: $blue-dark;
+    letter-spacing: -0.61px;
+  }
+
+  &__image-error {
+    font: 400 20px/24px $helvetica-regular;
+    color: $red;
+    letter-spacing: -0.61px;
+    text-align: center;
+  }
+
+  &__model {
+    margin-top: 10px;
+    font: 400 25px/28px $helvetica-regular;
+    color: $blue-dark;
+    letter-spacing: -0.61px;
+  }
+
+  &__type {
+    margin-top: 5px;
+    font: 400 13px/14px $helvetica-regular;
+    color: $blue-name;
+    letter-spacing: -0.31250008940696716px;
+  }
+
+  &__range {
+    width: 100%;
+    padding: 16px 22px;
+    box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12),
+      0px 1px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  &__description {
+    position: relative;
+    width: 100%;
+    padding: 22px 27px 40px 22px;
+    border: 1px solid transparent;
+
+    &_error {
+      border-color: $red;
+
+    }
+
+    &__title {
+      font: 500 13px/15px $roboto-medium;
+      color: $blue-dark-gray;
+      letter-spacing: -0.41px;
+    }
+
+    &__textarea {
+      @include inp-reset;
+      width: 100%;
+      height: 100px;
+      resize: none;
+      margin-top: 14px;
+      font: 400 14px/20px $roboto-regular;
+      color: $gray-dark;
+      letter-spacing: -0.41px;
+      box-sizing: border-box;
+
+      &:focus {
+        border-bottom: 1px solid $gray-low-light;
+      }
+    }
+
+    &__error {
+      position: absolute;
+      bottom: 15px;
+      left: 22px;
+      font: 400 14px/20px $roboto-regular;
+      color: $red;
+      letter-spacing: -0.41px;
+    }
+  }
+}

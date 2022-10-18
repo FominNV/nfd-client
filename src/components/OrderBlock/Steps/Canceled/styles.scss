@@ -1,0 +1,12 @@
+@import "styles/sass/main";
+
+.Canceled {
+  width: 100%;
+  height: 100%;
+
+  &__order-text {
+    margin-bottom: 16px;
+    font: 400 24px/28px $roboto-regular;
+    color: $black;
+  }
+}

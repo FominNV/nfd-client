@@ -1,0 +1,68 @@
+@import "styles/sass/main";
+
+.PopupOrder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  @include flex(center, center);
+  z-index: 50;
+
+  &__bacground-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    animation: fade-in-right 0.5s 1 ease-in;
+  }
+
+  &__bacground-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    animation: fade-in-left 0.5s 1 ease-in;
+  }
+
+  &__content {
+    @include flex(center, center, column);
+    z-index: 5;
+    animation: show-order-popup-buttons 1s 1 ease-in-out;
+  }
+
+  &__title {
+    margin-bottom: 32px;
+    font: 400 24px/28px $roboto-regular;
+    color: $black;
+  }
+
+  &__buttons {
+    @include flex;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      @include flex(center, center, column);
+    }
+
+    &__confirm-cancel {
+      @include btn-reset;
+      width: 177px;
+      height: 48px;
+      margin-right: 16px;
+
+      @media (max-device-width: $md), (max-width: $md) {
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
+    }
+
+    &__cancel {
+      width: 164px;
+      height: 48px;
+    }
+  }
+}

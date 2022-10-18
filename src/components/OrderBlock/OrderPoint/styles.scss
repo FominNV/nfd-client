@@ -1,0 +1,59 @@
+@import "styles/sass/main";
+
+.OrderPoint {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+  @include flex(space-between, flex-end);
+  font: 300 14px/16px $roboto-light;
+  color: $gray;
+
+  @media (max-device-width: $md), (max-width: $md) {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  @media (max-device-width: 400px) {
+    width: 100%;
+    height: 60px;
+    @include flex(flex-start, flex-start, column);
+  }
+
+  &__title {
+    display: inline-block;
+    color: $black;
+    white-space: nowrap;
+
+    @media (max-device-width: 400px) {
+      font-weight: bold;
+    }
+  }
+
+  &__dots {
+    margin: 0 12px;
+    flex: 1 750px;
+    border-bottom: 2px dotted $gray;
+  }
+
+  &__value {
+    max-width: 170px;
+    text-align: right;
+    text-transform: capitalize;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      max-width: none;
+    }
+
+    @media (max-device-width: 400px) {
+      width: 100%;
+      border-bottom: 1px solid $gray;
+    }
+
+    &_no-wrap {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

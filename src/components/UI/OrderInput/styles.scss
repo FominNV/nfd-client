@@ -1,0 +1,143 @@
+@import "styles/sass/main";
+
+.OrderInput {
+  margin-bottom: 12px;
+  @include flex(_, flex-end);
+
+  @media (max-device-width: $md), (max-width: $md) {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    @include flex(flex-end, flex-end);
+  }
+
+  @media (max-device-width: $sm), (max-width: $sm) {
+    display: block;
+  }
+
+  &__label {
+    margin-right: 5px;
+    font: 300 14px/16px $roboto-light;
+    color: $black;
+    text-align: right;
+    justify-self: stretch;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      font-size: 16px;
+      line-height: 18px;
+      white-space: nowrap;
+    }
+
+    @media (max-device-width: $sm), (max-width: $sm) {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+
+  &__input-block {
+    position: relative;
+    width: 224px;
+    height: 20px;
+    box-sizing: border-box;
+
+    @media (max-device-width: $lg), (max-width: $lg) {
+      width: 168px;
+    }
+
+    @media (max-device-width: $md), (max-width: $md) {
+      position: static;
+      width: 100%;
+      max-width: 370px;
+    }
+
+    @media (max-device-width: $sm), (max-width: $sm) {
+      position: relative;
+      max-width: none;
+      margin-top: 8px;
+    }
+  }
+
+  &__inp {
+    @include inp-reset;
+    width: 100%;
+    height: 100%;
+    padding: 0 22px 0 8px;
+    font: 300 14px/16px $roboto-light;
+    color: $black;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid $gray;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: $gray;
+    }
+
+    &:disabled {
+      background-color: $gray-high-light;
+      cursor: default;
+    }
+
+    @media (max-device-width: $md), (max-width: $md) {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+
+  &__btn {
+    @include btn-reset;
+    position: absolute;
+    top: calc(50% - 4px);
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    display: none;
+
+    &_active {
+      @include flex;
+    }
+  }
+
+  &__data-block {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    background: rgba(255, 255, 255, 0.9);
+    overflow-y: auto;
+    text-overflow: ellipsis;
+    box-shadow: 0px 3px 2px 3px rgba(113, 111, 111, 0.51);
+    opacity: 0;
+    z-index: 5;
+    transition: all 0.25s;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      font-size: 16px;
+      line-height: 18px;
+    }
+
+    @media (max-device-width: $tiny), (max-width: $tiny) {
+      width: 180px;
+    }
+
+    &_active {
+      display: block;
+      max-height: 150px;
+      opacity: 1;
+    }
+
+    &__btn {
+      @include btn-reset;
+      width: 100%;
+      padding: 4px 8px;
+      font: 300 14px/16px $roboto-light;
+      color: $black;
+      text-align: left;
+      transition: background 0.25s;
+
+      &:hover {
+        background: $gray-high-light;
+      }
+    }
+  }
+}

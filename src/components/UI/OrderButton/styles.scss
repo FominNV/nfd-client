@@ -1,0 +1,89 @@
+@import "styles/sass/main";
+
+.OrderButton {
+  @include btn-reset;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(90, 97, 105, 0.12);
+  font: 500 18px/1.2 $roboto-medium;
+  color: $white;
+  overflow: hidden;
+  transition: all 0.25s;
+
+  &.gray {
+    color: $gray-light;
+  }
+
+  &.small {
+    border-radius: 4px;
+  }
+
+  &.green {
+    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+    background-blend-mode: darken;
+    color: $white;
+  }
+
+  &.greenDark {
+    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+  }
+
+  &.cloudy {
+    background: linear-gradient(90deg, #132949 0%, #0c7b67 100%);
+  }
+
+  &.brownRed {
+    background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+  }
+
+  &.purple {
+    background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
+  }
+
+  &:hover {
+    .Button__filter {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &:active {
+    .Button__filter {
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  &:disabled {
+    background: $gray-light;
+    cursor: auto;
+  }
+
+  &:disabled:hover,
+  &:disabled:active {
+    .Button__filter {
+      background: rgba(0, 0, 0, 0);
+    }
+  }
+
+  &__filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.25s;
+  }
+
+  &__loading {
+    width: 100%;
+    height: 100%;
+    @include flex(center, center);
+  }
+
+  &__name {
+    position: relative;
+    z-index: 5;
+  }
+}

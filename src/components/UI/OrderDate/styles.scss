@@ -1,0 +1,129 @@
+@import "styles/sass/main";
+
+.OrderDate {
+  margin-bottom: 12px;
+  @include flex(_, flex-end);
+
+  @media (max-device-width: $md), (max-width: $md) {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    @include flex(flex-end, flex-end);
+  }
+
+  @media (max-device-width: $sm), (max-width: $sm) {
+    display: block;
+  }
+
+  &__label {
+    min-width: 18px;
+    margin-right: 8px;
+    font: 300 14px/16px $roboto-light;
+    color: $black;
+    text-align: right;
+    justify-self: stretch;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      font-size: 16px;
+      line-height: 18px;
+      white-space: nowrap;
+    }
+
+    @media (max-device-width: $sm), (max-width: $sm) {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+
+  &__input-block {
+    position: relative;
+    width: 224px;
+    height: 20px;
+    box-sizing: border-box;
+
+    @media (max-device-width: $lg), (max-width: $lg) {
+      width: 168px;
+    }
+
+    @media (max-device-width: $md), (max-width: $md) {
+      position: static;
+      width: 100%;
+      max-width: 370px;
+    }
+
+    @media (max-device-width: $sm), (max-width: $sm) {
+      position: relative;
+      max-width: none;
+      margin-top: 8px;
+    }
+  }
+
+  &__input {
+    @include inp-reset;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0 22px 0 8px;
+    font: 300 14px/16px $roboto-light;
+    color: transparent;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid $gray;
+    box-sizing: border-box;
+    z-index: 2;
+    cursor: pointer;
+
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 2;
+    }
+
+    &_filled {
+      color: $black;
+    }
+
+    &:disabled {
+      background-color: $gray-high-light;
+      cursor: default;
+      z-index: 10;
+    }
+
+    @media (max-device-width: $md), (max-width: $md) {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+
+  &__input-placeholder {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 22px 0 8px;
+    color: $gray;
+    user-select: none;
+
+    &_active {
+      display: block;
+    }
+  }
+
+  &__btn {
+    @include btn-reset;
+    position: absolute;
+    top: calc(50% - 4px);
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    display: none;
+    z-index: 5;
+
+    &_active {
+      @include flex;
+    }
+  }
+}

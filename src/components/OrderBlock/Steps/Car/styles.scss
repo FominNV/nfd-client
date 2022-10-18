@@ -1,0 +1,32 @@
+@import "styles/sass/main";
+
+.Car {
+  width: 100%;
+  height: 100%;
+  align-self: stretch;
+  @include scroll-bar-min;
+
+  &__radios {
+    @include flex;
+    flex-wrap: wrap;
+  }
+
+  &__cars {
+    width: 100%;
+    max-width: 736px;
+    height: calc(100vh - 270px);
+    min-height: 448px;
+    margin-top: 48px;
+    @include flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+
+    @media (max-device-width: $lg), (max-width: $lg) {
+      margin-top: 32px;
+    }
+
+    @media (max-device-width: $md), (max-width: $md) {
+      margin-top: 16px;
+    }
+  }
+}

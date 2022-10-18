@@ -1,0 +1,45 @@
+@import "styles/sass/main";
+
+.Extra {
+  width: 100%;
+  font: 300 14px/16px $roboto-light;
+
+  &__block {
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+  }
+
+  &__color-radios {
+    @include flex;
+    flex-wrap: wrap;
+  }
+
+  &__date-block {
+    width: fit-content;
+    position: relative;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+
+    &_error {
+      border-color: red;
+    }
+  }
+
+  &__date-error {
+    display: none;
+    width: 100%;
+    height: 32px;
+    text-align: center;
+    color: red;
+    border-top: 1px solid red;
+
+    &_active {
+      display: block;
+    }
+  }
+  
+}

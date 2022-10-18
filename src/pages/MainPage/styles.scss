@@ -1,0 +1,81 @@
+@import "styles/sass/main";
+
+.MainPage {
+  width: 100%;
+  height: 100%;
+  background: $white;
+  @include flex;
+
+  &_scrollbar-none {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  &__main {
+    width: 100%;
+    height: calc(100% - (64px + 48px));
+    min-height: calc(100vh - (64px + 48px));
+
+    @media (max-device-width: $md) {
+      height: calc(100% - (92px + 72px));
+      min-height: calc(100vh - (92px + 72px));
+    }
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
+    padding-top: 160px;
+    padding-bottom: 32px;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      padding-top: 34px;
+    }
+  }
+
+  &__tagline1 {
+    font: 700 70px/0.9 $roboto-bold;
+    color: $black;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      font-size: 32px;
+      line-height: 32px;
+    }
+  }
+
+  &__tagline2 {
+    margin-top: 4px;
+    font: 700 70px/0.9 $roboto-bold;
+    color: $green;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      font-size: 32px;
+      line-height: 32px;
+    }
+  }
+
+  &__tagline3 {
+    margin-top: 32px;
+    font: 300 26px/1.2 $roboto-light;
+    color: $gray;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      margin-top: 16px;
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+
+  &__btn {
+    width: 250px;
+    height: 48px;
+    margin-top: 60px;
+
+    @media (max-device-width: $md), (max-width: $md) {
+      position: relative;
+      width: calc(100% + 50px);
+      right: 25px;
+      margin-top: 32px;
+    }
+  }
+}
