@@ -30,7 +30,7 @@ const Place: FC = () => {
   const [address, setAddress] = useState<Nullable<string>>(null);
   const [streetGeo, setStreetGeo] = useState<Nullable<IGeoCoordinate[]>>(null);
   const [cityGeo, setCityGeo] = useState<Nullable<IGeoCoordinate[]>>(null);
-  const [errorGeo, setErrorGeo] = useState<boolean>(true);
+  const [errorGeo, setErrorGeo] = useState<boolean>(false);
   const [mapState, setMapState] = useState<IMapState>({
     center: [55.355198, 86.086847],
     zoom: 10,
@@ -46,26 +46,6 @@ const Place: FC = () => {
   const loadPoints = useCallback(async () => {
     await dispatch(getEntities(URLS.POINT_URL, AdminActionTypes.GET_ALL_POINTS));
   }, [dispatch]);
-
-  useEffect(() => {
-    if (!cities.all && params.id === OrderStepId.PLACE) {
-      dispatch(setLoading(true));
-      loadCities();
-    }
-  }, [cities.all, params.id, dispatch, loadCities]);
-
-  useEffect(() => {
-    if (!points.all && params.id === OrderStepId.PLACE) {
-      dispatch(setLoading(true));
-      loadPoints();
-    }
-  }, [points.all, params.id, dispatch, loadPoints]);
-
-  useEffect(() => {
-    if (points.all && cities.all && params.id === OrderStepId.PLACE) {
-      dispatch(setLoading(false));
-    }
-  }, [points.all, cities.all, params.id, dispatch]);
 
   const setCoordinateStates = useCallback<VoidFunc<IPoint[]>>(async (data) => {
     try {
@@ -104,7 +84,7 @@ const Place: FC = () => {
     }
   }, []);
 
-  const setPlaceByStreet = useCallback<SetPlaceByStreetType>(
+  const setPointByStreet = useCallback<SetPlaceByStreetType>(
     (currentStreet, data) => data.forEach((elem) => {
       if (elem.address === currentStreet) {
         dispatch(
@@ -137,6 +117,32 @@ const Place: FC = () => {
   );
 
   useEffect(() => {
+    if (!cities.all && params.id === OrderStepId.PLACE) {
+      dispatch(setLoading(true));
+      loadCities();
+    }
+  }, [cities.all, params.id, dispatch, loadCities]);
+
+  useEffect(() => {
+    if (!points.all && params.id === OrderStepId.PLACE) {
+      dispatch(setLoading(true));
+      loadPoints();
+    }
+  }, [points.all, params.id, dispatch, loadPoints]);
+
+  useEffect(() => {
+    if (points.all && cities.all && params.id === OrderStepId.PLACE) {
+      dispatch(setLoading(false));
+    }
+  }, [points.all, cities.all, params.id, dispatch]);
+
+  useEffect(() => {
+    if (cityGeo && params.id === OrderStepId.PLACE) {
+      dispatch(setLoading(false));
+    }
+  }, [cityGeo, params.id, dispatch]);
+
+  useEffect(() => {
     if (cityName && address && cities.all && points.all) {
       points.all.forEach((elem) => {
         if (elem.cityId.name === cityName && elem.address === address) {
@@ -146,6 +152,7 @@ const Place: FC = () => {
         }
       });
     } else if (!cityName) {
+      setAddress(null);
       dispatch(setOrderCity(null));
       dispatch(setOrderPoint(null));
       dispatch(setLockOrderStep(OrderStepId.CAR, false));
@@ -164,23 +171,11 @@ const Place: FC = () => {
   }, [points.all, params.id, setCoordinateStates]);
 
   useEffect(() => {
-    if (cityGeo && params.id === OrderStepId.PLACE) {
-      dispatch(setLoading(false));
-    }
-  }, [cityGeo, params.id, dispatch]);
-
-  useEffect(() => {
     if (address && streetGeo && points.all) {
-      setPlaceByStreet(address, points.all);
+      setPointByStreet(address, points.all);
       showPointOnMap(address, streetGeo);
     }
-  }, [
-    address,
-    streetGeo,
-    points.all,
-    setPlaceByStreet,
-    showPointOnMap,
-  ]);
+  }, [address, streetGeo, points.all, setPointByStreet, showPointOnMap]);
 
   useEffect(() => {
     if (cityName && cityGeo && !address) {

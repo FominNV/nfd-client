@@ -107,7 +107,6 @@ export const createEntity: CreateEntityType = (
       });
     })
     .catch((err) => {
-      console.log(err);
       dispatch({
         type: AdminActionTypes.SET_ERROR,
         payload: {
