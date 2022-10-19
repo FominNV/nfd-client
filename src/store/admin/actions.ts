@@ -98,7 +98,6 @@ export const createEntity: CreateEntityType = (
     },
   })
     .then((response) => {
-      console.log(response);
       dispatch({
         type,
         payload: {

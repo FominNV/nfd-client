@@ -4,7 +4,7 @@ import ReactLoading from "react-loading";
 import "./styles.scss";
 
 const OrderLoading: FC = () => (
-  <div className="Loading">
+  <div className="OrderLoading">
     <ReactLoading
       type="spinningBubbles"
       color="green"

@@ -5,7 +5,7 @@ import { useTypedSelector } from "store/selectors";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { setLoading, showOrderPopup } from "store/common/actions";
-import { postOrder } from "store/user/actions";
+import { postOrder, setPostedOrder } from "store/user/actions";
 import OrderPoint from "components/OrderBlock/OrderPoint";
 import OrderButton from "components/UI/OrderButton";
 import classNames from "classnames";
@@ -30,6 +30,10 @@ const OrderSection: FC = () => {
       dispatch(setLoading(false));
     }
   }, [orderData, dispatch]);
+
+  const remakeOrder = useCallback<EventFunc<MouseEvent>>(async () => {
+    dispatch(setPostedOrder(null));
+  }, [dispatch]);
 
   const orderPlace = useMemo<ReactNode>(() => {
     if (orderData.cityId && orderData.pointId) {
@@ -106,7 +110,7 @@ const OrderSection: FC = () => {
         SideBarSection__btn_active: params.id === elem.id,
       });
       const disabled = !unlockedStep[elem.unlockStep];
-      const onClick = elem.name === "Заказать" ? makeOrder : undefined;
+      const onClick = elem.name === "Заказать" ? makeOrder : remakeOrder;
 
       return (
         <div
@@ -124,7 +128,7 @@ const OrderSection: FC = () => {
         </div>
       );
     }),
-    [params.id, unlockedStep, makeOrder],
+    [params.id, unlockedStep, makeOrder, remakeOrder],
   );
 
   const orderPrice = useMemo<ReactNode>(() => {

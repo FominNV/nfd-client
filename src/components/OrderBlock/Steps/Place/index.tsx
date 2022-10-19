@@ -30,7 +30,7 @@ const Place: FC = () => {
   const [address, setAddress] = useState<Nullable<string>>(null);
   const [streetGeo, setStreetGeo] = useState<Nullable<IGeoCoordinate[]>>(null);
   const [cityGeo, setCityGeo] = useState<Nullable<IGeoCoordinate[]>>(null);
-  const [errorGeo, setErrorGeo] = useState<boolean>(false);
+  const [errorGeo, setErrorGeo] = useState<boolean>(true);
   const [mapState, setMapState] = useState<IMapState>({
     center: [55.355198, 86.086847],
     zoom: 10,

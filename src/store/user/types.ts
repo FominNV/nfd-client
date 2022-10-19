@@ -62,6 +62,7 @@ export enum OrderStatusType {
   NEW = "Неподтвержденный",
   CONFIRM = "Подтвержденный",
   CANCEL = "Отмененный",
+  DONE = "Завершенный",
 }
 
 export type OrderDispatch<T> = (...arg: T[]) => UserAction;

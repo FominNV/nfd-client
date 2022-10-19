@@ -18,8 +18,8 @@ import "./styles.scss";
 const LoginForm: FC = () => {
   const { admin, error } = useTypedSelector((state) => state.admin);
   const { loading } = useTypedSelector((state) => state.common);
-  const [username, setUsername] = useState<string>("intern");
-  const [password, setPassword] = useState<string>("intern-S!");
+  const [username, setUsername] = useState<string>("admin");
+  const [password, setPassword] = useState<string>("password");
   const [loginError, setLoginError] = useState<Nullable<string>>(null);
   const [passwordError, setPasswordError] = useState<Nullable<string>>(null);
   const [formError, setLoginFormError] = useState<Nullable<string>>(null);
@@ -32,8 +32,8 @@ const LoginForm: FC = () => {
       setState("Заполните поле");
       return false;
     }
-    if (value.trim().length < 6) {
-      setState(`${label} должен содержать 6 и более символов`);
+    if (value.trim().length < 5) {
+      setState(`${label} должен содержать 5 и более символов`);
       return false;
     }
     setState(null);
@@ -45,8 +45,8 @@ const LoginForm: FC = () => {
       if (errorValue === "Заполните поле" && inputValue.trim()) {
         setError(null);
       } else if (
-        errorValue.includes("должен содержать 6 и более символов")
-        && inputValue.length >= 6
+        errorValue.includes("должен содержать 5 и более символов")
+        && inputValue.length >= 5
       ) {
         setError(null);
       }

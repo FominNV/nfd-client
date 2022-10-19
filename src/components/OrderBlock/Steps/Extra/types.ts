@@ -14,3 +14,5 @@ export type CalcOrderPriceType = (
   from?: CheckDatesItem,
   to?: CheckDatesItem
 ) => number;
+
+export const minuteRate = "Поминутный";

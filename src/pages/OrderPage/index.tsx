@@ -124,6 +124,7 @@ const OrderPage: FC = () => {
     if (
       postedOrder
       && postedOrder.orderStatusId.name === OrderStatusType.CONFIRM
+      && location.pathname !== PATHS.ORDER_CANCELED
     ) {
       localStorage.setItem("nfd_ordered_id", postedOrder.id.toString());
       navigate(`${PATHS.ORDER}${postedOrder.id}`);

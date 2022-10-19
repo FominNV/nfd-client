@@ -25,8 +25,8 @@ const OrderedSection: FC = () => {
       <OrderPoint
         title="Пункт выдачи"
         key="order_place"
-        value={`${postedOrder?.cityId.name},`}
-        noWrapValue={postedOrder?.pointId.address}
+        value={`${postedOrder && postedOrder.cityId.name},`}
+        noWrapValue={postedOrder ? postedOrder.pointId.address : ""}
       />
     ),
     [postedOrder],

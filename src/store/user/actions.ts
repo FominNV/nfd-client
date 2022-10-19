@@ -69,7 +69,7 @@ export const postOrder: PostOrderType =  (url, body) => async (dispatch: Dispatc
         payload: { postedOrder: res.data },
       });
     })
-    .catch(() => {
+    .catch((err) => {
       dispatch({
         type: UserActionTypes.POST_ORDER,
         payload: { postedOrder: null },

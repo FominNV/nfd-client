@@ -47,23 +47,23 @@ const Ordered: FC = () => {
   );
 
   const carNumber = useMemo<ReactNode>(
-    () => postedOrder?.carId.number && (
+    () => postedOrder && postedOrder.carId && postedOrder.carId.number  && (
     <div className="Total__car-number">
-      {postedOrder?.carId.number.replace(/(\d+)/g, " $1 ")}
+      {postedOrder.carId.number.replace(/(\d+)/g, " $1 ")}
     </div>
     ),
     [postedOrder],
   );
 
   const carImage = useMemo<ReactNode>(
-    () => postedOrder?.carId?.thumbnail.path && (
+    () => postedOrder && postedOrder.carId && postedOrder.carId.thumbnail.path && (
     <img
-      src={postedOrder?.carId?.thumbnail.path}
+      src={postedOrder.carId.thumbnail.path}
       className="Ordered__car__img"
       alt="car_image"
     />
     ),
-    [postedOrder?.carId?.thumbnail.path],
+    [postedOrder],
   );
 
   const content = useMemo<ReactNode>(
@@ -73,7 +73,9 @@ const Ordered: FC = () => {
       <>
         <div className="Ordered__order-text">Ваш заказ подтверждён</div>
         <div className="Ordered__car">
-          <div className="Ordered__car__model">{postedOrder?.carId.name}</div>
+          <div className="Ordered__car__model">
+            {postedOrder && postedOrder.carId && postedOrder.carId.name}
+          </div>
           {carImage}
         </div>
         {carNumber}
@@ -84,8 +86,8 @@ const Ordered: FC = () => {
     [
       loading,
       carImage,
-      postedOrder?.carId.name,
       addServices,
+      postedOrder,
       availableDate,
       carNumber,
     ],

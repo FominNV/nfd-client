@@ -19,13 +19,15 @@ import { AdminActionTypes } from "store/admin/types";
 import { formatTerm } from "common";
 import { OrderStepId } from "pages/OrderPage/types";
 import { dataAddService } from "./data";
-import { CalcOrderPriceType, CheckDatesType, SetOrderDatesType } from "./types";
+import {
+  CalcOrderPriceType, CheckDatesType, minuteRate, SetOrderDatesType,
+} from "./types";
 
 import "./styles.scss";
 
 const Extra: FC = () => {
   const {
-    color, rateId, carId, dateFrom, dateTo,
+    color, rateId, carId, dateFrom, dateTo, price,
   } = useTypedSelector((state) => state.user.orderData);
   const { rates } = useTypedSelector((state) => state.admin);
   const [carColor, setCarColor] = useState<string>("");
@@ -79,20 +81,20 @@ const Extra: FC = () => {
 
   const calcOrderPrice = useCallback<CalcOrderPriceType>(
     (currentRate, date1 = null, date2 = null) => {
-      let price = 0;
+      let orderPrice = 0;
       if (checkDates(date1, date2)) {
         const from = new Date(orderDateFrom as string).getTime();
         const to = new Date(orderDateTo as string).getTime();
-        price = Math.ceil((to - from) / 60000) * Number(currentRate.price);
+        orderPrice = Math.ceil((to - from) / 60000) * Number(currentRate.price);
       } else {
-        price = currentRate.price;
+        orderPrice = currentRate.price;
       }
 
-      if (fullTank) price += 500;
-      if (childChair) price += 200;
-      if (rightHandDrive) price += 1600;
+      if (fullTank) orderPrice += 500;
+      if (childChair) orderPrice += 200;
+      if (rightHandDrive) orderPrice += 1600;
 
-      return price;
+      return orderPrice;
     },
     [
       fullTank,
@@ -134,23 +136,23 @@ const Extra: FC = () => {
   }, [rates.all, params.id, loadRates, dispatch]);
 
   useEffect(() => {
-    if (color && rateId && !errorDate) {
+    if (color && rateId && !errorDate && price) {
       dispatch(setLockOrderStep(OrderStepId.TOTAL, true));
     } else {
       dispatch(setLockOrderStep(OrderStepId.TOTAL, false));
     }
-  }, [color, rateId, errorDate, dispatch]);
+  }, [color, rateId, errorDate, price, dispatch]);
 
   useEffect(() => {
     if (
       params.id === OrderStepId.EXTRA
       && rateId
-      && rateId.rateTypeId.name !== "Поминутный"
+      && rateId.rateTypeId.name !== minuteRate
     ) {
       dispatch(setOrderPrice(calcOrderPrice(rateId)));
     } else if (
       rateId
-      && rateId.rateTypeId.name === "Поминутный"
+      && rateId.rateTypeId.name === minuteRate
       && checkDates(orderDateFrom, orderDateTo)
     ) {
       dispatch(
@@ -158,7 +160,7 @@ const Extra: FC = () => {
       );
     } else if (
       rateId
-      && rateId.rateTypeId.name === "Поминутный"
+      && rateId.rateTypeId.name === minuteRate
       && !checkDates(orderDateFrom, orderDateTo)
     ) {
       dispatch(setOrderPrice(null));
@@ -174,11 +176,11 @@ const Extra: FC = () => {
   ]);
 
   useEffect(() => {
-    if (rateId && rateId.rateTypeId.name !== "Поминутный" && orderDateFrom) {
+    if (rateId && rateId.rateTypeId.name !== minuteRate && orderDateFrom) {
       setOrderDates(rateId, orderDateFrom);
     } else if (
       rateId
-      && rateId.rateTypeId.name === "Поминутный"
+      && rateId.rateTypeId.name === minuteRate
       && checkDates(orderDateFrom, orderDateTo)
     ) {
       setOrderDates(rateId, orderDateFrom as string, orderDateTo as string);

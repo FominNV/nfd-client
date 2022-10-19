@@ -37,7 +37,9 @@ import "./styles.scss";
 
 const PopupAdmin: FC = () => {
   const { adminPopup } = useTypedSelector((state) => state.common);
-  const { adminToken, categories, cities } = useTypedSelector((state) => state.admin);
+  const {
+    adminToken, categories, cities, error,
+  } = useTypedSelector((state) => state.admin);
   const {
     rates, rateTypes, statuses, points,
   } = useTypedSelector((state) => state.admin);
@@ -312,11 +314,13 @@ const PopupAdmin: FC = () => {
       setLoading(false);
       dispatch(setAdminPopup(null));
       clearFields();
-      dispatch(
-        setBannerText(dataEntityBannerText[adminPopup.entityMode].create),
-      );
+      if (!error) {
+        dispatch(
+          setBannerText(dataEntityBannerText[adminPopup.entityMode].create),
+        );
+      }
     }
-  }, [adminToken, url, createType, body, adminPopup, checkAllStates, clearFields, dispatch]);
+  }, [adminToken, url, error, createType, body, adminPopup, checkAllStates, clearFields, dispatch]);
 
   const updateCurrentEntity = useCallback<EventFunc<MouseEvent>>(async () => {
     if (
@@ -333,15 +337,20 @@ const PopupAdmin: FC = () => {
       setLoading(false);
       dispatch(setAdminPopup(null));
       clearFields();
-      dispatch(
-        setBannerText(dataEntityBannerText[adminPopup.entityMode].update),
-      );
+      setTimeout(() => {
+        if (!error) {
+          dispatch(
+            setBannerText(dataEntityBannerText[adminPopup.entityMode].update),
+          );
+        }
+      });
     }
   }, [
     adminToken,
     url,
     updateType,
     body,
+    error,
     entityId,
     adminPopup,
     clearFields,
@@ -356,11 +365,15 @@ const PopupAdmin: FC = () => {
       setLoading(false);
       dispatch(setAdminPopup(null));
       clearFields();
-      dispatch(
-        setBannerText(dataEntityBannerText[adminPopup.entityMode].delete),
-      );
+      setTimeout(() => {
+        if (!error) {
+          dispatch(
+            setBannerText(dataEntityBannerText[adminPopup.entityMode].delete),
+          );
+        }
+      });
     }
-  }, [adminToken, url, deleteType, entityId, adminPopup, clearFields, dispatch]);
+  }, [adminToken, url, error, deleteType, entityId, adminPopup, clearFields, dispatch]);
 
   const createSecondFieldComponent = useCallback<CreateSecondFieldComponent>(
     (type) => {
@@ -575,6 +588,12 @@ const PopupAdmin: FC = () => {
     }
     return undefined;
   }, [adminPopup, createNewEntity, updateCurrentEntity]);
+
+  useEffect(() => {
+    if (error) {
+      dispatch(setBannerText(null));
+    }
+  }, [error, dispatch]);
 
   const thirdFieldInput = useMemo<ReactNode>(() => {
     const readOnly = !!(

@@ -46,10 +46,7 @@ const PopupOrder: FC = () => {
       const url = `${PATHS.ORDER}${postedOrder.id}`;
       await changeOrderStatus(postedOrder, orderStatuses.cancel.id, url);
       localStorage.removeItem("nfd_ordered_id");
-
-      setTimeout(() => {
-        navigate(PATHS.ORDER_CANCELED);
-      });
+      navigate(PATHS.ORDER_CANCELED);
     }
   }, [orderStatuses.cancel, postedOrder, changeOrderStatus, navigate]);
 

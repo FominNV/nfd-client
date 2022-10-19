@@ -1,5 +1,5 @@
 export enum URLS {
-  BASE_URL = "http://178.208.92.202:7000",
+  BASE_URL = "http://178.208.92.202:7000/",
   ADMIN_LOGIN_URL = "auth/login/",
   ADMIN_ORDER_URL = "db/order/",
   CAR_URL = "db/car/",
