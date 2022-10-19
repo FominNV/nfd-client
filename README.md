@@ -1,4 +1,4 @@
-# Admin
+# NFD-client
 
 В данном проекте используется следующий стек:
 
@@ -9,5 +9,3 @@
 Код - Eslint. Prettier;
 
 Оптимизация изображений - Adobe Photoshop
-
-Deploy [#Admin](https://fominnv.github.io/admin)
