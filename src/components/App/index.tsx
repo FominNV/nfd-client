@@ -12,6 +12,10 @@ import "./styles.scss";
 const App: FC = () => (
   <Routes>
     <Route
+      path="/"
+      element={<MainPage />}
+    />
+    <Route
       path={PATHS.ADMIN}
       element={<LoginPage />}
     />
