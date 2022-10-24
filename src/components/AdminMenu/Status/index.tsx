@@ -59,11 +59,10 @@ const Status: FC = () => {
   }, [statuses.updated, loadStatuses]);
 
   const result = useMemo<ReactNode>(
-    () => !loading
-      && statuses.all && (
+    () => !loading && (
       <div className="Menu__result">
         Всего:
-        {statuses.all.length}
+        {statuses.count}
       </div>
     ),
     [loading, statuses],

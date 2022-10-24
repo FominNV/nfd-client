@@ -19,37 +19,45 @@ const initialState: IAdminState = {
   error: null,
   adminMenu: AdminMenu.AUTO_CARD,
   orders: {
+    count: 0,
     all: null,
     limit: null,
     updated: null,
   },
   cars: {
+    count: 0,
     all: null,
     limit: null,
     updated: null,
     config: null,
   },
   cities: {
+    count: 0,
     all: null,
     updated: null,
   },
   rates: {
+    count: 0,
     all: null,
     updated: null,
   },
   rateTypes: {
+    count: 0,
     all: null,
     updated: null,
   },
   categories: {
+    count: 0,
     all: null,
     updated: null,
   },
   points: {
+    count: 0,
     all: null,
     updated: null,
   },
   statuses: {
+    count: 0,
     all: null,
     updated: null,
   },
@@ -98,40 +106,38 @@ export function adminReducer(
         ...state,
         orders: {
           ...state.orders,
-          limit: action.payload.entities?.data as IOrder[],
+          limit: action.payload.entities?.data.data as IOrder[],
+          count: action.payload.entities?.data.count || 0,
         },
         error: action.payload.error,
       };
 
     case AdminActionTypes.CREATE_ORDER: {
-      const data = action.payload.updatedEntity?.data as IOrder;
       return {
         ...state,
         orders: {
           ...state.orders,
-          updated: data as IOrder,
+          updated: action.payload.updatedEntity?.data.data as IOrder,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.UPDATE_ORDER: {
-      const data = action.payload.updatedEntity?.data as IOrder;
       return {
         ...state,
         orders: {
           ...state.orders,
-          updated: data as IOrder,
+          updated: action.payload.updatedEntity?.data.data as IOrder,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.DELETE_ORDER: {
-      const data = action.payload.updatedEntity?.data as IOrder;
       return {
         ...state,
         orders: {
           ...state.orders,
-          updated: data as IOrder,
+          updated: action.payload.updatedEntity?.data.data as IOrder,
         },
         error: action.payload.error,
       }; }
@@ -141,40 +147,38 @@ export function adminReducer(
         ...state,
         cities: {
           ...state.cities,
-          all: action.payload.entities?.data as ICity[],
+          all: action.payload.entities?.data.data as ICity[],
+          count: action.payload.entities?.data.count || 0,
         },
         error: action.payload.error,
       };
 
     case AdminActionTypes.CREATE_CITY: {
-      const data = action.payload.updatedEntity?.data as ICity;
       return {
         ...state,
         cities: {
           ...state.cities,
-          updated: data as ICity,
+          updated: action.payload.updatedEntity?.data.data as ICity,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.UPDATE_CITY: {
-      const data = action.payload.updatedEntity?.data as ICity;
       return {
         ...state,
         cities: {
           ...state.cities,
-          updated: data as ICity,
+          updated: action.payload.updatedEntity?.data.data as ICity,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.DELETE_CITY: {
-      const data = action.payload.updatedEntity?.data as ICity;
       return {
         ...state,
         cities: {
           ...state.cities,
-          updated: data as ICity,
+          updated: action.payload.updatedEntity?.data.data as ICity,
         },
         error: action.payload.error,
       }; }
@@ -184,40 +188,38 @@ export function adminReducer(
         ...state,
         rates: {
           ...state.rates,
-          all: action.payload.entities?.data as IRate[],
+          all: action.payload.entities?.data.data as IRate[],
+          count: action.payload.entities?.data.count || 0,
         },
         error: action.payload.error,
       };
 
     case AdminActionTypes.CREATE_RATE: {
-      const data = action.payload.updatedEntity?.data as IRate;
       return {
         ...state,
         rates: {
           ...state.rates,
-          updated: data as IRate,
+          updated: action.payload.updatedEntity?.data.data as IRate,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.UPDATE_RATE: {
-      const data = action.payload.updatedEntity?.data as IRate;
       return {
         ...state,
         rates: {
           ...state.rates,
-          updated: data as IRate,
+          updated: action.payload.updatedEntity?.data.data as IRate,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.DELETE_RATE: {
-      const data = action.payload.updatedEntity?.data as IRate;
       return {
         ...state,
         rates: {
           ...state.rates,
-          updated: data as IRate,
+          updated: action.payload.updatedEntity?.data.data as IRate,
         },
         error: action.payload.error,
       }; }
@@ -227,40 +229,38 @@ export function adminReducer(
         ...state,
         rateTypes: {
           ...state.rateTypes,
-          all: action.payload.entities?.data as IRateType[],
+          all: action.payload.entities?.data.data as IRateType[],
+          count: action.payload.entities?.data.count || 0,
         },
         error: action.payload.error,
       };
 
     case AdminActionTypes.CREATE_RATE_TYPE: {
-      const data = action.payload.updatedEntity?.data as IRateType;
       return {
         ...state,
         rateTypes: {
           ...state.rateTypes,
-          updated: data as IRateType,
+          updated: action.payload.updatedEntity?.data.data as IRateType,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.UPDATE_RATE_TYPE: {
-      const data = action.payload.updatedEntity?.data as IRateType;
       return {
         ...state,
         rateTypes: {
           ...state.rateTypes,
-          updated: data as IRateType,
+          updated: action.payload.updatedEntity?.data.data as IRateType,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.DELETE_RATE_TYPE: {
-      const data = action.payload.updatedEntity?.data as IRateType;
       return {
         ...state,
         rateTypes: {
           ...state.rateTypes,
-          updated: data as IRateType,
+          updated: action.payload.updatedEntity?.data.data as IRateType,
         },
         error: action.payload.error,
       }; }
@@ -270,7 +270,7 @@ export function adminReducer(
         ...state,
         cars: {
           ...state.cars,
-          all: action.payload.entities?.data as ICar[],
+          all: action.payload.entities?.data.data as ICar[],
         },
         error: action.payload.error,
       };
@@ -280,40 +280,38 @@ export function adminReducer(
         ...state,
         cars: {
           ...state.cars,
-          limit: action.payload.entities?.data as ICar[],
+          limit: action.payload.entities?.data.data as ICar[],
+          count: action.payload.entities?.data.count || 0,
         },
         error: action.payload.error,
       };
 
     case AdminActionTypes.CREATE_CAR: {
-      const data = action.payload.updatedEntity?.data as ICar;
       return {
         ...state,
         cars: {
           ...state.cars,
-          updated: data as ICar,
+          updated: action.payload.updatedEntity?.data.data as ICar,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.UPDATE_CAR: {
-      const data = action.payload.updatedEntity?.data as ICar;
       return {
         ...state,
         cars: {
           ...state.cars,
-          updated: data as ICar,
+          updated: action.payload.updatedEntity?.data.data as ICar,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.DELETE_CAR: {
-      const data = action.payload.updatedEntity?.data as ICar;
       return {
         ...state,
         cars: {
           ...state.cars,
-          updated: data as ICar,
+          updated: action.payload.updatedEntity?.data.data as ICar,
         },
         error: action.payload.error,
       }; }
@@ -329,40 +327,38 @@ export function adminReducer(
         ...state,
         categories: {
           ...state.categories,
-          all: action.payload.entities?.data as ICategory[],
+          all: action.payload.entities?.data.data as ICategory[],
+          count: action.payload.entities?.data.count || 0,
         },
         error: action.payload.error,
       };
 
     case AdminActionTypes.CREATE_CATEGORY: {
-      const data = action.payload.updatedEntity?.data as ICategory;
       return {
         ...state,
         categories: {
           ...state.categories,
-          updated: data as ICategory,
+          updated: action.payload.updatedEntity?.data.data as ICategory,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.UPDATE_CATEGORY: {
-      const data = action.payload.updatedEntity?.data as ICategory;
       return {
         ...state,
         categories: {
           ...state.categories,
-          updated: data as ICategory,
+          updated: action.payload.updatedEntity?.data.data as ICategory,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.DELETE_CATEGORY: {
-      const data = action.payload.updatedEntity?.data as ICategory;
       return {
         ...state,
         categories: {
           ...state.categories,
-          updated: data as ICategory,
+          updated: action.payload.updatedEntity?.data.data as ICategory,
         },
         error: action.payload.error,
       }; }
@@ -372,40 +368,38 @@ export function adminReducer(
         ...state,
         points: {
           ...state.points,
-          all: action.payload.entities?.data as IPoint[],
+          all: action.payload.entities?.data.data as IPoint[],
+          count: action.payload.entities?.data.count || 0,
         },
         error: action.payload.error,
       };
 
     case AdminActionTypes.CREATE_POINT: {
-      const data = action.payload.updatedEntity?.data as IPoint;
       return {
         ...state,
         points: {
           ...state.points,
-          updated: data as IPoint,
+          updated: action.payload.updatedEntity?.data.data as IPoint,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.UPDATE_POINT: {
-      const data = action.payload.updatedEntity?.data as IPoint;
       return {
         ...state,
         points: {
           ...state.points,
-          updated: data as IPoint,
+          updated: action.payload.updatedEntity?.data.data as IPoint,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.DELETE_POINT: {
-      const data = action.payload.updatedEntity?.data as IPoint;
       return {
         ...state,
         points: {
           ...state.points,
-          updated: data as IPoint,
+          updated: action.payload.updatedEntity?.data.data as IPoint,
         },
         error: action.payload.error,
       }; }
@@ -415,40 +409,38 @@ export function adminReducer(
         ...state,
         statuses: {
           ...state.statuses,
-          all: action.payload.entities?.data as IOrderStatus[],
+          all: action.payload.entities?.data.data as IOrderStatus[],
+          count: action.payload.entities?.data.count || 0,
         },
         error: action.payload.error,
       };
 
     case AdminActionTypes.CREATE_ORDER_STATUS: {
-      const data = action.payload.updatedEntity?.data as IOrderStatus;
       return {
         ...state,
         statuses: {
           ...state.statuses,
-          updated: data as IOrderStatus,
+          updated: action.payload.updatedEntity?.data.data as IOrderStatus,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.UPDATE_ORDER_STATUS: {
-      const data = action.payload.updatedEntity?.data as IOrderStatus;
       return {
         ...state,
         statuses: {
           ...state.statuses,
-          updated: data as IOrderStatus,
+          updated: action.payload.updatedEntity?.data.data as IOrderStatus,
         },
         error: action.payload.error,
       }; }
 
     case AdminActionTypes.DELETE_ORDER_STATUS: {
-      const data = action.payload.updatedEntity?.data as IOrderStatus;
       return {
         ...state,
         statuses: {
           ...state.statuses,
-          updated: data as IOrderStatus,
+          updated: action.payload.updatedEntity?.data.data as IOrderStatus,
         },
         error: action.payload.error,
       }; }

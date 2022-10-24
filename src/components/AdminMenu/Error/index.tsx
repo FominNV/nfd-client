@@ -15,13 +15,13 @@ const Error: FC = () => {
     dispatch(setError(null));
   }, [dispatch]);
 
-  const errorStatus = error && error.status;
+  const errorMessage = error && error.message;
   const errorCode = error && error.code;
 
   return (
     <div className="Error">
       <div className="Error__content">
-        <div className="Error__error-number">{errorStatus}</div>
+        <div className="Error__error-number">{errorMessage}</div>
         <div className="Error__code">{errorCode}</div>
         <div className="Error__text">Попробуйте перезагрузить страницу</div>
         <div className="Error__btn">

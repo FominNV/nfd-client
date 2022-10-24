@@ -83,14 +83,13 @@ const Point: FC = () => {
   }, [points.updated, loadPoints]);
 
   const result = useMemo<ReactNode>(
-    () => !loading
-      && points.all && (
-        <div className="Menu__result">
-          Всего:
-          {points.all.length}
-        </div>
+    () => !loading && (
+    <div className="Menu__result">
+      Всего:
+      {points.count}
+    </div>
     ),
-    [loading, points.all],
+    [loading, points.count],
   );
 
   const dataTBody = useMemo<Nullable<string[][]>>(() => {

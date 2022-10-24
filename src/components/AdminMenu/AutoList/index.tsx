@@ -159,8 +159,6 @@ const AutoList: FC = () => {
     return false;
   }, [categories.all, category.name, setCategoryState]);
 
-  const result = cars.limit ? cars.limit.length : 0;
-
   const clearFilterButton = useMemo<ReactNode>(
     () => filterPoints.category && (
     <div className="Order__btn-clear-filter">
@@ -235,7 +233,7 @@ const AutoList: FC = () => {
           <div className="AutoList__result">
             Всего:
             {" "}
-            {result}
+            {cars.count}
             <div className="AutoList__filter-point">
               <FilterPoint
                 key="auto_list_filter_point_category"

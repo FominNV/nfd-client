@@ -66,7 +66,7 @@ export const postOrder: PostOrderType =  (url, body) => async (dispatch: Dispatc
     .then((res) => {
       dispatch({
         type: UserActionTypes.POST_ORDER,
-        payload: { postedOrder: res.data },
+        payload: { postedOrder: res.data.data },
       });
     })
     .catch((err) => {
@@ -85,7 +85,7 @@ export const getPostedOrder = (orderId: string) => async (
     .then((res) => {
       dispatch({
         type: UserActionTypes.GET_POSTED_ORDER,
-        payload: { postedOrder: res.data },
+        payload: { postedOrder: res.data.data },
       });
     })
     .catch(() => {

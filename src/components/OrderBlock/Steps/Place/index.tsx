@@ -87,6 +87,7 @@ const Place: FC = () => {
   const setPointByStreet = useCallback<SetPlaceByStreetType>(
     (currentStreet, data) => data.forEach((elem) => {
       if (elem.address === currentStreet) {
+        setCityName(elem.cityId.name);
         dispatch(
           setOrderCity(elem.cityId),
         );
@@ -137,40 +138,6 @@ const Place: FC = () => {
   }, [points.all, cities.all, params.id, dispatch]);
 
   useEffect(() => {
-    if (cityGeo && params.id === OrderStepId.PLACE) {
-      dispatch(setLoading(false));
-    }
-  }, [cityGeo, params.id, dispatch]);
-
-  useEffect(() => {
-    if (cityName && address && cities.all && points.all) {
-      points.all.forEach((elem) => {
-        if (elem.cityId.name === cityName && elem.address === address) {
-          dispatch(setOrderCity(elem.cityId));
-          dispatch(setOrderPoint(elem));
-          dispatch(setLockOrderStep(OrderStepId.CAR, true));
-        }
-      });
-    } else if (!cityName) {
-      setAddress(null);
-      dispatch(setOrderCity(null));
-      dispatch(setOrderPoint(null));
-      dispatch(setLockOrderStep(OrderStepId.CAR, false));
-      dispatch(setLockOrderStep(OrderStepId.EXTRA, false));
-      dispatch(setLockOrderStep(OrderStepId.TOTAL, false));
-    } else if (!address) {
-      dispatch(setOrderPoint(null));
-      dispatch(setLockOrderStep(OrderStepId.CAR, false));
-    }
-  }, [address, cities.all, cityName, dispatch, points.all]);
-
-  useEffect(() => {
-    if (points.all && params.id === OrderStepId.PLACE) {
-      setCoordinateStates(points.all);
-    }
-  }, [points.all, params.id, setCoordinateStates]);
-
-  useEffect(() => {
     if (address && streetGeo && points.all) {
       setPointByStreet(address, points.all);
       showPointOnMap(address, streetGeo);
@@ -182,6 +149,39 @@ const Place: FC = () => {
       showCityOnMap(cityName, cityGeo);
     }
   }, [cityName, address, cityGeo, showCityOnMap]);
+
+  useEffect(() => {
+    if (cityName && address && cities.all && points.all) {
+      points.all.forEach((elem) => {
+        if (elem.cityId.name === cityName && elem.address === address) {
+          dispatch(setOrderCity(elem.cityId));
+          dispatch(setOrderPoint(elem));
+          dispatch(setLockOrderStep(OrderStepId.CAR, true));
+        }
+      });
+    }
+  }, [address, cities.all, cityName, dispatch, points.all]);
+
+  useEffect(() => {
+    if (!address || !cityName) {
+      dispatch(setLockOrderStep(OrderStepId.CAR, false));
+      dispatch(setLockOrderStep(OrderStepId.EXTRA, false));
+      dispatch(setLockOrderStep(OrderStepId.TOTAL, false));
+    }
+  }, [address, cityName, dispatch]);
+
+  useEffect(() => {
+    if (!cityName) {
+      setAddress(null);
+      dispatch(setOrderCity(null));
+    }
+  }, [cityName, dispatch]);
+
+  useEffect(() => {
+    if (points.all && params.id === OrderStepId.PLACE) {
+      setCoordinateStates(points.all);
+    }
+  }, [points.all, params.id, setCoordinateStates]);
 
   const citiesData = useMemo<string[]>(
     () => (cities.all ? cities.all.map((elem) => elem.name) : []),

@@ -2,7 +2,7 @@
   "name": "admin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://178.208.92.202",
+  "homepage": "http://178.208.92.202/",
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.1.9",
     "@redux-devtools/extension": "^3.2.2",

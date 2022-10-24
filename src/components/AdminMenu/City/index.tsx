@@ -59,12 +59,11 @@ const City: FC = () => {
   }, [cities.updated, loadCities]);
 
   const result = useMemo<ReactNode>(
-    () => !loading
-      && cities.all && (
+    () => !loading && (
       <div className="Menu__result">
         Всего:
         {" "}
-        {cities.all.length}
+        {cities.count}
       </div>
     ),
     [loading, cities],

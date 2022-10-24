@@ -83,10 +83,8 @@ const LoginForm: FC = () => {
   }, [password, passwordError, fieldWatcher]);
 
   useEffect(() => {
-    if (error && error.status === 401) {
-      setLoginFormError("Почта или пароль введены неверно");
-    } else if (error && error.status !== 401) {
-      setLoginFormError(error.code);
+    if (error) {
+      setLoginFormError("Логин или пароль введены неверно");
     }
   }, [error]);
 

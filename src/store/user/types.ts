@@ -27,7 +27,10 @@ export interface IOrderData {
 }
 
 export interface IResponse {
-  data: IOrder
+  count: number;
+  data: {
+    data: IOrder;
+  };
 }
 
 export interface IUnlockedOrderStep {

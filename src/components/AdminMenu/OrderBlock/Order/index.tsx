@@ -194,8 +194,6 @@ const Order: FC = () => {
     }
   }, [loading, contentBlock]);
 
-  const result = orders.limit ? orders.limit.length : 0;
-
   const citySelect = useMemo<ReactNode>(() => {
     if (cities.all) {
       const data: string[] = cities.all.map((elem) => elem.name);
@@ -301,16 +299,16 @@ const Order: FC = () => {
   );
 
   const pagination = useMemo<ReactNode>(
-    () => orders.limit
-      && Math.ceil(orders.limit.length / 20) > 1 && (
+    () => orders.count
+      && Math.ceil(orders.count / 20) > 1 && (
         <Paginater
-          pageCount={Math.ceil(orders.limit.length / 20)}
+          pageCount={Math.ceil(orders.count / 20)}
           currentNumber={pageNumber}
           disabled={loading}
           setState={setPageNumber}
         />
     ),
-    [orders.limit, pageNumber, loading],
+    [orders.count, pageNumber, loading],
   );
 
   return (
@@ -323,7 +321,7 @@ const Order: FC = () => {
           <div className="Order__result">
             Всего:
             {" "}
-            {result}
+            {orders.count}
             <div className="Order__filter-points">{orderFilterPoints}</div>
           </div>
         </div>

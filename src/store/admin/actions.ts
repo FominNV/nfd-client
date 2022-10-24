@@ -11,6 +11,7 @@ import {
   ICar,
   IError,
   IResponse,
+  IResponseError,
   UpdateEntityType,
 } from "./types";
 
@@ -25,14 +26,15 @@ export const loginAdmin: AdminFetch = (data) => async (dispatch) => {
     .then((response) => {
       dispatch({
         type: AdminActionTypes.LOGIN,
-        payload: { admin: response?.data as IAdmin, error: null },
+        payload: { admin: response?.data.data as IAdmin, error: null },
       });
     })
     .catch((err) => {
+      const error = err.response as IResponseError;
       dispatch({
         type: AdminActionTypes.SET_ERROR,
         payload: {
-          error: { code: err.code, status: err.request.status },
+          error: { code: error.data.statusCode, message: error.data.message },
         },
       });
     });
@@ -76,11 +78,12 @@ export const getEntities: GetEntitiesType = (
       });
     })
     .catch((err) => {
+      const error = err.response as IResponseError;
       dispatch({
         type: AdminActionTypes.SET_ERROR,
         payload: {
           entities: null,
-          error: { code: err.code, status: err.request.status },
+          error: { code: error.data.statusCode, message: error.data.message },
         },
       });
     });
@@ -107,11 +110,12 @@ export const createEntity: CreateEntityType = (
       });
     })
     .catch((err) => {
+      const error = err.response as IResponseError;
       dispatch({
         type: AdminActionTypes.SET_ERROR,
         payload: {
           updatedEntity: null,
-          error: { code: err.code, status: err.request.status },
+          error: { code: error.data.statusCode, message: error.data.message },
         },
       });
     });
@@ -139,11 +143,12 @@ export const updateEntity: UpdateEntityType = (
       });
     })
     .catch((err) => {
+      const error = err.response as IResponseError;
       dispatch({
         type: AdminActionTypes.SET_ERROR,
         payload: {
           updatedEntity: null,
-          error: { code: err.code, status: err.request.status },
+          error: { code: error.data.statusCode, message: error.data.message },
         },
       });
     });
@@ -167,11 +172,12 @@ export const deleteEntity: DeleteEntityType = (url, type, id, token) => async (
       });
     })
     .catch((err) => {
+      const error = err.response as IResponseError;
       dispatch({
         type: AdminActionTypes.SET_ERROR,
         payload: {
           updatedEntity: null,
-          error: { code: err.code, status: err.request.status },
+          error: { code: error.data.statusCode, message: error.data.message },
         },
       });
     });

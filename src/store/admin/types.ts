@@ -18,6 +18,7 @@ export interface IAdminState {
 }
 
 export type IEntity<T> = {
+  count: number
   all: Nullable<T[]>
   limit?: Nullable<T[]>
   updated?: Nullable<T>
@@ -25,24 +26,27 @@ export type IEntity<T> = {
 };
 
 export interface IResponse {
-  data:
-  | IAdmin
-  | IOrder[]
-  | IOrder
-  | ICity[]
-  | ICity
-  | IRate[]
-  | IRate
-  | IRateType[]
-  | IRateType
-  | ICar[]
-  | ICar
-  | ICategory[]
-  | ICategory
-  | IPoint[]
-  | IPoint
-  | IOrderStatus[]
-  | IOrderStatus
+  data: {
+    count: number;
+    data:
+    | IAdmin
+    | IOrder[]
+    | IOrder
+    | ICity[]
+    | ICity
+    | IRate[]
+    | IRate
+    | IRateType[]
+    | IRateType
+    | ICar[]
+    | ICar
+    | ICategory[]
+    | ICategory
+    | IPoint[]
+    | IPoint
+    | IOrderStatus[]
+    | IOrderStatus;
+  };
 }
 
 export interface ILoginData {
@@ -54,9 +58,16 @@ export interface IAdmin {
   token: string
 }
 
+export interface IResponseError {
+  data: {
+    message: string;
+    statusCode: number;
+  };
+}
+
 export interface IError {
-  code: string
-  status: number
+  message: string;
+  code: number;
 }
 
 export interface IPostOrder {
@@ -223,23 +234,23 @@ export type DeleteEntityType = (
 ) => (dispatch: Dispatch<DeleteEntityAction>) => Promise<void>;
 
 type GetEntitiesAction = {
-  type: AdminActionTypes
-  payload: { entities: Nullable<IResponse>; error: Nullable<IError> }
+  type: AdminActionTypes;
+  payload: { entities: Nullable<IResponse>; error: Nullable<IError> };
 };
 
 type UpdateEntityAction = {
-  type: AdminActionTypes
-  payload: { updatedEntity: Nullable<IResponse>; error: Nullable<IError> }
+  type: AdminActionTypes;
+  payload: { updatedEntity: Nullable<IResponse>; error: Nullable<IError> };
 };
 
 type CreateEntityAction = {
-  type: AdminActionTypes
-  payload: { updatedEntity: Nullable<IResponse>; error: Nullable<IError> }
+  type: AdminActionTypes;
+  payload: { updatedEntity: Nullable<IResponse>; error: Nullable<IError> };
 };
 
 type DeleteEntityAction = {
-  type: AdminActionTypes
-  payload: { updatedEntity: Nullable<IResponse>; error: Nullable<IError> }
+  type: AdminActionTypes;
+  payload: { updatedEntity: Nullable<IResponse>; error: Nullable<IError> };
 };
 
 export enum AdminActionTypes {

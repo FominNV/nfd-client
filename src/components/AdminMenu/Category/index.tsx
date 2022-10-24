@@ -59,14 +59,13 @@ const Category: FC = () => {
   }, [categories.updated, loadCategories]);
 
   const result = useMemo<ReactNode>(
-    () => !loading
-      && categories.all && (
+    () => !loading && (
       <div className="Menu__result">
         Всего:
-        {categories.all.length}
+        {categories.count}
       </div>
     ),
-    [loading, categories.all],
+    [loading, categories.count],
   );
 
   const dataTBody = useMemo<Nullable<string[][]>>(

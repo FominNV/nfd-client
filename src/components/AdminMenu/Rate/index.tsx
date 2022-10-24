@@ -67,14 +67,13 @@ const Rate: FC = () => {
   }, [rates.updated, loadRates]);
 
   const result = useMemo<ReactNode>(
-    () => !loading
-      && rates.all && (
+    () => !loading && (
       <div className="Menu__result">
         Всего:
-        {rates.all.length}
+        {rates.count}
       </div>
     ),
-    [loading, rates],
+    [loading, rates.count],
   );
 
   const dataTBody = useMemo<Nullable<string[][]>>(
