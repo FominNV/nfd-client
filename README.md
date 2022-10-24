@@ -9,5 +9,3 @@
 Код - Eslint. Prettier;
 
 Оптимизация изображений - Adobe Photoshop
-
-Deploy [#Admin](https://fominnv.github.io/admin)
