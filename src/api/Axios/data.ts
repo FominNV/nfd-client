@@ -1,5 +1,5 @@
 export enum URLS {
-  BASE_URL = "http://localhost:5000/",
+  BASE_URL = "https://fan42.ru/",
   ADMIN_LOGIN_URL = "auth/login/",
   ADMIN_ORDER_URL = "api/db/order/",
   CAR_URL = "api/db/car/",

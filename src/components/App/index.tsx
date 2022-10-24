@@ -35,6 +35,10 @@ const App: FC = () => (
       path={`${PATHS.ORDER}:id`}
       element={<OrderPage />}
     />
+    <Route path="api/:id" />
+    <Route path="api/auth/:id" />
+    <Route path="api/db/:id" />
+    <Route path="api/db/:id/:id" />
     <Route
       path="*"
       element={<Page404 />}
